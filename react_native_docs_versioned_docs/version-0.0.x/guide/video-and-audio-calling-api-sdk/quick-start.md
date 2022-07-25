@@ -18,9 +18,16 @@ slug: quick-start
 
 import Mermaid from '@theme/Mermaid';
 
-VideoSDK enables the opportunity to integrate video & audio calling to Web, Android, IOS applications. It provides Programmable SDKs and REST APIs to build scalable video conferencing applications.
+In this quick start tutorial, we will integrate Video SDK into a new React Native project. This quick start will help you;
+- Integrate Video SDK in iOS & Android
+- Configure Project
+- Implement join screen
+- Implement controls
+- Render participation list
+- Handle participation media
+- Run your application
 
-This guide will get you running with the VideoSDK video & audio calling in minutes.
+To add more feature, you can explore our basic & advance feature list.
 
 ## Prerequisites
 
@@ -32,7 +39,7 @@ This guide will get you running with the VideoSDK video & audio calling in minut
 
 ### Create App
 
-Create new react-native app by applying below commands.
+Create a new react-native app by applying below commands.
 
 ```js
 npx react-native init AppName
@@ -77,14 +84,12 @@ yarn add "@videosdk.live/react-native-sdk"
    ├── node_modules
    ├── android
    ├── ios
-   ├── App.js
+   ├── App.js // Create this file manually
    ├── api.js
    ├── index.js
 ```
 
-### Project Configuration
-
-#### Android Setup
+### Android Setup
 
 1. Add required permission in AndroidManifest.xml file.
 
@@ -123,7 +128,7 @@ yarn add "@videosdk.live/react-native-sdk"
 </manifest>
 ```
 
-2. Update colors.xml for internal dependencies
+2. Update colors.xml for internal dependencies (This will define the notification color)
 
 ```js title="android/app/src/main/res/values/colors.xml"
 <resources>
@@ -187,7 +192,7 @@ android.enableDexingArtifactTransform.desugaring=false
 -keep class org.webrtc.** { *; }
 ```
 
-#### iOS Setup
+### iOS Setup
 
 1. Install `react-native-incallmanager`
 
@@ -265,7 +270,7 @@ AppRegistry.registerComponent(appName, () => App);
 
 ### Step 1 : Get started with api.js
 
-Before jumping to anything else, we have write API to generate unique meetingId. You will require auth token, you can generate it using either by using [videosdk-rtc-api-server-examples](https://github.com/videosdk-live/videosdk-rtc-api-server-examples) or generate it from the [Video SDK Dashboard](https://app.videosdk.live/api-keys) for developer.
+Before jumping into anything else, we have to write API to generate unique meetingId. You will require auth token, you can generate it either by using [videosdk-rtc-api-server-examples](https://github.com/videosdk-live/videosdk-rtc-api-server-examples) or from the [Video SDK Dashboard](https://app.videosdk.live/api-keys) for developer.
 
 ```js title=api.js
 export const token = "<Generated-from-dashbaord>";
@@ -287,7 +292,7 @@ export const createMeeting = async ({ token }) => {
 
 ### Step 2: Wireframe App.js with all the components
 
-To build up wireframe of App.js, we are going to use Video SDK Hooks and Context Providers. Video SDK provideos MeetingProvider, MeetingConsumer, useMeeting and useParticipant hooks. Let's understand each of them.
+To build up wireframe of App.js, we are going to use Video SDK Hooks and Context Providers. Video SDK provides MeetingProvider, MeetingConsumer, useMeeting and useParticipant hooks. Let's understand each of them.
 
 First we will explore Context Provider and Consumer. Context is primarily used when some data needs to be accessible by many components at different nesting levels.
 
@@ -361,7 +366,7 @@ export default function App() {
 
 ### Step 3 : Implement Join Screen
 
-Join screen will work as medium to either schedule new meeting or to join existing meeting.
+Join screen will work as a medium to either schedule new meeting or to join existing meeting.
 
 ```js title="JoinScreen Component"
 function JoinScreen(props) {
